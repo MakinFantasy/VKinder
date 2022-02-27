@@ -1,5 +1,5 @@
 import vk_api
-import config
+import config_
 import random
 from vk_api.longpoll import VkLongPoll, VkEventType
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
@@ -136,7 +136,7 @@ def search_settings_manager(vk, user, user_text):
 
     elif user.state == 'search_city':
 
-        city_id = vk_api.VkApi(token=config.user_token).get_api().database.getCities(
+        city_id = vk_api.VkApi(token=config_.user_token).get_api().database.getCities(
             country_id=1, q=user_text, count=1, v='5.131')['items'][0]['id']
 
         user.search_city = city_id
@@ -250,12 +250,12 @@ def user_search(vk, user, session):
 
 
 def main():
-    vk_session = vk_api.VkApi(token=config.access_token)
+    vk_session = vk_api.VkApi(token=config_.access_token)
 
-    longpoll = VkLongPoll(vk_session, group_id=config.group_id)
+    longpoll = VkLongPoll(vk_session, group_id=config_.group_id)
     vk = vk_session.get_api()
 
-    user_session = vk_api.VkApi(token=config.user_token)
+    user_session = vk_api.VkApi(token=config_.user_token)
     session = user_session.get_api()
 
     while True:
